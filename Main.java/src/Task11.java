@@ -9,9 +9,16 @@ public class Task11 {
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
         }
-
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + (i == n - 1 ? "" : " "));
+        if (n == 0) {
+            System.out.println(0);
+            return;
         }
+        int d= 1;
+        for (int i = 1; i < n; i++) {
+            if (arr[i] != arr[i - 1]) {
+                d++;
+            }
+        }
+        System.out.println(d);
     }
 }
