@@ -8,28 +8,21 @@ public class Task14 {
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
         }
-        long kInput = in.nextLong();
-        int k = (int) (kInput % n);
+        long k = in.nextLong() % n;
         if (k < 0) {
             k += n;
         }
-        if (k > 0) {
-            reverse(arr, 0, n - 1);
-            reverse(arr, 0, k - 1);
-            reverse(arr, k, n - 1);
+        for (int s = 0; s < k; s++) {
+            int l = arr[n - 1];
+            for (int i = n - 1; i > 0; i--) {
+                arr[i] = arr[i - 1];
+            }
+            arr[0] = l;
         }
+
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + (i == n - 1 ? "" : " "));
         }
         System.out.println();
-    }
-    private static void reverse(int[] arr, int start, int end) {
-        while (start < end) {
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
-        }
     }
 }
