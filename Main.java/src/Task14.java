@@ -2,27 +2,33 @@ import java.util.Scanner;
 
 public class Task14 {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) return;
+        int n = sc.nextInt();
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = in.nextInt();
+            arr[i] = sc.nextInt();
         }
-        long k = in.nextLong() % n;
+        int k = sc.nextInt();
+        k = k % n;
         if (k < 0) {
-            k += n;
-        }
-        for (int s = 0; s < k; s++) {
-            int l = arr[n - 1];
-            for (int i = n - 1; i > 0; i--) {
-                arr[i] = arr[i - 1];
-            }
-            arr[0] = l;
+            k = k + n;
         }
 
+        reverse(arr, 0, n - 1);
+        reverse(arr, 0, k - 1);
+        reverse(arr, k, n - 1);
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + (i == n - 1 ? "" : " "));
         }
-        System.out.println();
+    }
+    public static void reverse(int[] arr, int l, int r) {
+        while (l < r) {
+            int temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            l++;
+            r--;
+        }
     }
 }
